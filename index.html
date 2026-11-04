@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Metaetiquetas para PWA e instalación móvil -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="YsaPay">
-    <meta name="theme-color" content="#0b141a">
-    <link rel="manifest" href="assets/imagen-logos-nuevos.png">
-     <link rel="manifest" href="/manifest.json">    
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -199,34 +192,9 @@
                 window.location.href = "https://ysapay-comercios.vercel.app";
             }
         }
-        // --- LÓGICA DE INSTALACIÓN PWA ---
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            const btn = document.getElementById('btnInstalar');
-            if (btn) btn.style.display = 'block';
+        
 
-            btn.addEventListener('click', () => {
-                btn.style.display = 'none';
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('Usuario aceptó instalar la PWA');
-                    }
-                    deferredPrompt = null;
-                });
-            });
-        });
-
-        // Registrar Service Worker básico para habilitar la descarga PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('SW registrado con éxito:', reg.scope))
-                    .catch(err => console.log('Error al registrar SW:', err));
-            });
-                                    }
+        
     </script>
 
 </body>
